@@ -1,8 +1,13 @@
 const express = require('express')
 const path = require('path')
-const multer = require('multer')
-const upload = multer({ dest: 'uploads'})
 __dirname = path.resolve()
+const request = require('request')
+const multer = require('multer')
+const multerGoogleStorage = require('multer-cloud-storage')
+
+require('dotenv').config()
+
+const upload = multer({ storage: multerGoogleStorage.storageEngine() })
 
 const app = express()
 const PORT = process.env.PORT || 8080
@@ -25,21 +30,34 @@ app.use(express.json())
 
 app.use(handleCors(corsOptions))
 
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+// app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 app.use(express.static('client/public'))
 
-// app.get('',(req, res) => res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html')))
 
+// Upload an image
 app.post('/uploads', upload.single('file'), (req, res) => {
-    console.log(req.file)
+    if (!req.file) {
+        res.status(400).json({ message: 'No file selected, try again' })
+        throw new Error('No file selected, try again')
+    } else {
+        console.log(req.files)
+        res.json({ message: 'success', file: req.file })
+    }
+})
 
-    // const { name, filename } = req.body
-    // console.log(name)
-    // console.log(filename)
-    // console.log(req)
+app.get('/api/images', (req, res) => {
+    let getUrl = `https://storage.googleapis.com/${process.env.GCS_BUCKET}`
 
-    res.json({ message: 'success'})
+    request(getUrl, (error, response, body) => {
+        if (error) {
+            console.log(error)
+            throw new Error(error.message)
+        } else if (body) {
+            console.log(body)
+            res.json(body)
+        }
+    })
+
 })
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))
-
