@@ -23,3 +23,22 @@
 
 // })
 
+const showImg = document.getElementById('showimg')
+
+
+showImg.addEventListener('click', async () => {
+    try {
+        const response = await fetch('http://localhost:8080/api/images', {
+            method: 'GET',
+        })
+
+        console.log(await response.json())
+
+        const newImg = document.createElement('img')
+        // newImg.src =
+
+    } catch (error) {
+        console.log(error)
+        throw new Error('No images not found')
+    }
+})
