@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 __dirname = path.resolve()
-const request = require('request')
 const multer = require('multer')
 const multerGoogleStorage = require('multer-cloud-storage')
 
@@ -33,6 +32,9 @@ app.use(handleCors(corsOptions))
 // app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 app.use(express.static('client/public'))
 
+const downloadImagesRoute = require('./routes/downloadRouter')
+
+app.use('/api', downloadImagesRoute)
 
 // Upload an image
 app.post('/uploads', upload.single('file'), (req, res) => {
@@ -40,24 +42,11 @@ app.post('/uploads', upload.single('file'), (req, res) => {
         res.status(400).json({ message: 'No file selected, try again' })
         throw new Error('No file selected, try again')
     } else {
-        console.log(req.files)
+        console.log(req.file)
         res.json({ message: 'success', file: req.file })
     }
 })
 
-app.get('/api/images', (req, res) => {
-    let getUrl = `https://storage.googleapis.com/${process.env.GCS_BUCKET}`
 
-    request(getUrl, (error, response, body) => {
-        if (error) {
-            console.log(error)
-            throw new Error(error.message)
-        } else if (body) {
-            console.log(body)
-            res.json(body)
-        }
-    })
-
-})
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))

@@ -7,4 +7,10 @@ This is an image repository aka photo gallery app. You can view, upload, and del
 ### Technology
 
 - Node.js
+    - Express
+    - multer
+    - dotenv
+    - multer-cloud-storage
+- Google Cloud Platform
+    - Storage Bucket
 - Heroku

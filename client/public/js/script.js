@@ -26,19 +26,23 @@
 const showImg = document.getElementById('showimg')
 
 
-showImg.addEventListener('click', async () => {
-    try {
-        const response = await fetch('http://localhost:8080/api/images', {
+showImg.addEventListener('click', () => {
+    fetch('http://localhost:8080/api/download', {
             method: 'GET',
         })
+        .then(async response => {
+            if (response) {
+                console.log(response.body)
+                const newImg = document.createElement('img')
+                newImg.src = './images/bagels.jpg'
+                const imgDiv = document.getElementById('img')
 
-        console.log(await response.json())
+                imgDiv.append(newImg)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            throw new Error('No images not found')
+        })
 
-        const newImg = document.createElement('img')
-        // newImg.src =
-
-    } catch (error) {
-        console.log(error)
-        throw new Error('No images not found')
-    }
 })
