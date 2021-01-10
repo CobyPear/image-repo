@@ -38,10 +38,13 @@ app.use(express.static('client/public'))
 
 // upload route
 const uploadFileRoute = require('./routes/uploadRoutes')
+// download rotes
+const downloadImagesRoute = require('./routes/downloadRoutes')
 
 
 // Upload an image
 app.use('/api', uploadFileRoute)
+app.use('/api', downloadImagesRoute)
 
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))
