@@ -2,12 +2,9 @@ const express = require('express')
 const path = require('path')
 __dirname = path.resolve()
 
-const multer = require('multer')
-const multerGoogleStorage = require('multer-cloud-storage')
 
 require('dotenv').config()
 
-const upload = multer({ storage: multerGoogleStorage.storageEngine() })
 
 // the express app
 const app = express()
@@ -44,7 +41,7 @@ const uploadFileRoute = require('./routes/uploadRoutes')
 
 
 // Upload an image
-app.use('/api/upload', upload.single('file'), uploadFileRoute)
+app.use('/api', uploadFileRoute)
 
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))
