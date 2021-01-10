@@ -1,44 +1,44 @@
-// const submitBtn = document.getElementById('submit')
-// const formData = new FormData()
-// const fileField = document.querySelector('input[type="file"]')
-// const title = document.querySelector('input[type="text"]')
+const uploadedImage = document.getElementById('uploadedImg')
+const image = uploadedImage.files[0]
+const uploadFrom = document.getElementById('uploadForm')
 
-// submitBtn.addEventListener('click', async e => {
-//     console.log('hello')
-//     e.preventDefault()
-//     console.log(title.value)
-//     formData.append(title.value, fileField.files[0])
-//     try {
-//         const response = await fetch('http://localhost:8080/uploads', {
-//             method: 'POST',
-//             // cors: 'no-cors',
-//             body: formData
-//         })
-
-//     } catch (error) {
-//         console.log(error)
-//         throw new Error(error.message)
-//     }
-
-
-// })
-
-const showImg = document.getElementById('showimg')
-
-
-showImg.addEventListener('click', async () => {
+const viewImages = async (e) => {
+    e.preventDefault()
     try {
-        const response = await fetch('http://localhost:8080/api/images', {
-            method: 'GET',
+        const response = await fetch('http://localhost:8080/api/download', {
+            method: 'GET'
         })
 
-        console.log(await response.json())
+        const images = await response.json()
+        console.log(images)
 
-        const newImg = document.createElement('img')
-        // newImg.src =
+        images.forEach(image => {
+            console.log(image)
+            const matches = image.metadata.mediaLink.match(/\/o\/(.+)\?/)
+            const imageName = matches[1]
 
+            const img = document.createElement('img')
+            img.src = `https://storage.googleapis.com/${image.bucket.name}/${imageName}`
+            img.alt = image.id
+            const downloadLink = document.createElement('a')
+            downloadLink.href = image.metadata.mediaLink
+            downloadLink.textContent = `Download ${imageName} here!`
+
+            const container = document.createElement('div')
+            container.className = 'image'
+
+            container.append(img, downloadLink)
+
+            const imgContainer = document.getElementById('imgContainer')
+            imgContainer.append(container)
+        })
+        
     } catch (error) {
         console.log(error)
-        throw new Error('No images not found')
+        throw new Error(error.message)
     }
-})
+}
+
+
+
+window.addEventListener('load', viewImages)
