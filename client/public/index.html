@@ -10,7 +10,7 @@
 <body>
     <header>Image Repo</header>
     <div class=container>
-        <form  id='uploadForm'>
+        <form action="/api/upload" method="POST" enctype="multipart/form-data" id='uploadForm'>
             <input type="file" name='file' id='uploadedImg'>
             <button type="submit" id="submit">Submit</button>
         </form>
