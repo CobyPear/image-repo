@@ -1,0 +1,23 @@
+h1 {
+    text-align: center;
+}
+form {
+    display: flex;
+    justify-content: center;
+}
+#imgContainer {
+    max-width: max-content;
+    display: flex;
+    flex-direction: row wrap;
+}
+
+.image {
+    display: flex;
+    flex-direction: column;
+}
+img {
+    height: 250px;
+    width: 250px;
+    margin-right :auto;
+    padding: 25px;
+}

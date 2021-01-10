@@ -20,11 +20,17 @@ const viewImages = async (e) => {
             const img = document.createElement('img')
             img.src = `https://storage.googleapis.com/${image.bucket.name}/${imageName}`
             img.alt = image.id
+            const downloadLink = document.createElement('a')
+            downloadLink.href = image.metadata.mediaLink
+            downloadLink.textContent = `Download ${imageName} here!`
+
+            const container = document.createElement('div')
+            container.className = 'image'
+
+            container.append(img, downloadLink)
 
             const imgContainer = document.getElementById('imgContainer')
-
-            imgContainer.append(img)
-            
+            imgContainer.append(container)
         })
         
     } catch (error) {
@@ -32,6 +38,7 @@ const viewImages = async (e) => {
         throw new Error(error.message)
     }
 }
+
 
 
 window.addEventListener('load', viewImages)

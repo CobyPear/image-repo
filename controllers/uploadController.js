@@ -6,7 +6,7 @@ const uploadImage = async (req, res) => {
         throw new Error('No file selected, try again')
     } else {
         console.log(req.files)
-        res.status(200).json({ message: 'Success! Go back to view images', file: req.file })
+        res.status(200).json({ message: 'Success! Go back to view images' })
     }
 }
 

@@ -2,13 +2,18 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Repo</title>
 </head>
 
 <body>
-    <header>Image Repo</header>
+    <h1>Image Repo</h1>
+    <p>
+        Use the Choose File button to browse your machine for an image to upload, then click Submit!
+        You'll see a message
+    </p>
     <div class=container>
         <form action="/api/upload" method="POST" enctype="multipart/form-data" id='uploadForm'>
             <input type="file" name='file' id='uploadedImg'>

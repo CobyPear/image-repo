@@ -6,7 +6,6 @@ const downloadImages = (req, res) => {
     
     bucket.getFiles((err, files) => {
         if (!err) {
-            console.log(files)
             res.status(200).json(files)
         } else {
             console.log(err)
