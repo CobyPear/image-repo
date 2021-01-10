@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 __dirname = path.resolve()
-const request = require('request')
+
 const multer = require('multer')
 const multerGoogleStorage = require('multer-cloud-storage')
 
@@ -44,7 +44,7 @@ const uploadFileRoute = require('./routes/uploadRoutes')
 
 
 // Upload an image
-app.use('/api/uploads', upload.single('file'), uploadFileRoute)
+app.use('/api/upload', upload.single('file'), uploadFileRoute)
 
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))
