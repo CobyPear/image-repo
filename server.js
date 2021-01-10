@@ -9,11 +9,14 @@ require('dotenv').config()
 
 const upload = multer({ storage: multerGoogleStorage.storageEngine() })
 
+// the express app
 const app = express()
 const PORT = process.env.PORT || 8080
 
+// cors options
 const corsOptions = {}
 
+// cors middlware function
 const handleCors = options => {
     return (req, res, next) => {
         if (options) {
@@ -25,39 +28,23 @@ const handleCors = options => {
     }
 }
 
+// parser middleware
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+// cors middleware
 app.use(handleCors(corsOptions))
 
-// app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+// frontend page
 app.use(express.static('client/public'))
 
 
+// upload route
+const uploadFileRoute = require('./routes/uploadRoutes')
+
+
 // Upload an image
-app.post('/uploads', upload.single('file'), (req, res) => {
-    if (!req.file) {
-        res.status(400).json({ message: 'No file selected, try again' })
-        throw new Error('No file selected, try again')
-    } else {
-        console.log(req.files)
-        res.json({ message: 'success', file: req.file })
-    }
-})
+app.use('/api/uploads', upload.single('file'), uploadFileRoute)
 
-app.get('/api/images', (req, res) => {
-    let getUrl = `https://storage.googleapis.com/${process.env.GCS_BUCKET}`
-
-    request(getUrl, (error, response, body) => {
-        if (error) {
-            console.log(error)
-            throw new Error(error.message)
-        } else if (body) {
-            console.log(body)
-            res.json(body)
-        }
-    })
-
-})
 
 app.listen(PORT, console.log(`Server is running on port ${PORT}`))
