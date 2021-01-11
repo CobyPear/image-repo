@@ -10,16 +10,33 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.PORT || 8080
 
+// a function that validates origin of request and checks it against the allow list
+const createAllowListValidator = function (allowList) {
+    return function (val) {
+        for (let i = 0; i < allowList.length; i++) {
+            if (val === allowList[i]) {
+                return true
+            }
+        }
+        return false
+    }
+}
+const allowList = ['https://guarded-bayou-88466.herokuapp.com/', null]
 // cors options
-const corsOptions = {}
-
-// cors middlware function
-const handleCors = options => {
+const corsOptions = {
+    allowOrigin: createAllowListValidator(allowList)
+}
+// cors middleware function
+const handleCors = (options) => {
     return (req, res, next) => {
-        if (options) {
-            res.set('Access-Control-Allow-Origin', '*')
-        } else {
-            res.set('Access-Control-Allow-Origin', '*')
+        if (options.allowOrigin) { 
+            let origin = req.headers['origin']
+            console.log(origin)
+            if (options.allowOrigin(origin)) {
+                res.set('Access-Control-Allow-Origin', origin)
+            } else {
+                res.set('Access-Control-Allow-Origin', '*')
+            }
         }
         next()
     }

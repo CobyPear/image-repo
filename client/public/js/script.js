@@ -9,10 +9,8 @@ const viewImages = async(e) => {
         })
 
         const images = await response.json()
-        console.log(images)
 
         images.forEach(image => {
-            console.log(image)
             const matches = image.metadata.mediaLink.match(/\/o\/(.+)\?/)
             const imageName = matches[1]
 
@@ -60,9 +58,4 @@ const viewImages = async(e) => {
 }
 
 
-input.addEventListener('change', (e) => {
-    console.log('hello')
-    console.log(e.target.value)
-    console.log(e.target)
-})
 window.addEventListener('load', viewImages)
