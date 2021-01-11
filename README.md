@@ -1,5 +1,7 @@
 # Shopify Challenge Image Repository
 
+View deployed application here: https://guarded-bayou-88466.herokuapp.com/
+
 ### Description
 
 This is an image repository aka photo gallery app. You can view, upload, and download photos.
