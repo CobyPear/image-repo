@@ -8,6 +8,8 @@ This is an image repository aka photo gallery app. You can view, upload, and dow
 
 Currently the image repository is publicly viewable and there are no extra permissions required to upload or download images. 
 
+Images are automatically deleted from the bucket after 25 days from date of upload.
+
 ### Technology
 
 - HTML
