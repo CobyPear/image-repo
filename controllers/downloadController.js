@@ -1,6 +1,6 @@
 const { Storage } = require('@google-cloud/storage')
 const storage = new Storage()
-const bucket = storage.bucket('shopify-image-repo')
+const bucket = storage.bucket(process.env.GCS_BUCKET)
 
 const downloadImages = (req, res) => {
     
