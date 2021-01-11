@@ -23,24 +23,35 @@ h1 {
 }
 p {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    width: max-content;
-    height: 30px;
+    align-items: center;
     padding: 25px;
     margin: 0 auto 30px auto;
     border: 2px dashed var(--darker-red);
     color: var(--main-bg-color);
     background-color: var(--dark-bg-color);
-
+}
+#notice {
+    font-size: 2em;
+    text-shadow: 1px -1px white;
+    align-self: center;
+    color: var(--darker-red);
 }
 form {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 500px;
+    padding: 20px;
     margin: auto;
+    border: 2px dashed var(--dark-bg-color);
+    background-color: var(--secondary-bg-color);
 }
 
+input[id='file-upload'] {
+    color: white;
+}
 
 #imgContainer {
     min-width: 98vw;
@@ -56,15 +67,25 @@ form {
     justify-content: center;
     margin: 20px 20px 0 0;
     padding: 15px;
-
     background-color: var(--secondary-bg-color);
 }
+
 img {
     height: 250px;
     width: 250px;
     margin-right :auto;
     padding: 25px;
 }
+
+/* img:active {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:auto;
+    height:auto;
+    display:block;
+    z-index:999;
+} */
 
 button, .custom-upload-btn {
     margin: auto;
@@ -76,7 +97,7 @@ button, .custom-upload-btn {
 
 button:hover, .custom-upload-btn:hover {
     cursor: pointer;
-    border: 1px dashed var(--lighter-red);
+    border: 2px dashed var(--lighter-red);
 }
 
 .custom-upload-btn {

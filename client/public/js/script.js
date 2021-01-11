@@ -1,7 +1,7 @@
 const fileName = document.getElementById('file-selected')
 const input = document.getElementById('file-upload')
 
-const viewImages = async (e) => {
+const viewImages = async(e) => {
     e.preventDefault()
     try {
         const response = await fetch('http://localhost:8080/api/download', {
@@ -19,6 +19,22 @@ const viewImages = async (e) => {
             const img = document.createElement('img')
             img.src = `https://storage.googleapis.com/${image.bucket.name}/${imageName}`
             img.alt = image.id
+            img.dataset.zoom = false
+            img.addEventListener('click', (e) => {
+                if (e.target.dataset.zoom === 'false') {
+                    e.target.dataset.zoom = true
+                    img.style.width = 'auto'
+                    img.style.height = 'auto'
+                } else if (e.target.dataset.zoom === 'true') {
+                    e.target.dataset.zoom = false
+                    img.style.display = 'flex'
+                    img.style.height = '250px'
+                    img.style.width = '250px'
+                    img.style['margin-right'] = 'auto'
+                    img.style.padding = '25px'
+                }
+
+            })
 
             const downloadButton = document.createElement('button')
             downloadButton.classList = 'borderSpin'
@@ -36,7 +52,7 @@ const viewImages = async (e) => {
             const imgContainer = document.getElementById('imgContainer')
             imgContainer.append(container)
         })
-        
+
     } catch (error) {
         console.log(error)
         throw new Error(error.message)
