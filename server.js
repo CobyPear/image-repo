@@ -2,7 +2,6 @@ const express = require('express')
 const path = require('path')
 __dirname = path.resolve()
 
-const logger = require('morgan')
 
 require('dotenv').config()
 
@@ -35,6 +34,7 @@ app.use(handleCors(corsOptions))
 
 // logger middleware
 if (process.env.NODE_ENV === 'development') {
+    const logger = require('morgan')
     app.use(logger('dev'))
 }
 // frontend page
@@ -43,7 +43,7 @@ app.use(express.static('client/public'))
 
 // upload route
 const uploadFileRoute = require('./routes/uploadRoutes')
-// download rotes
+    // download rotes
 const downloadImagesRoute = require('./routes/downloadRoutes')
 
 
