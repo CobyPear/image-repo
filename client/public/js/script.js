@@ -4,7 +4,7 @@ const input = document.getElementById('file-upload')
 const viewImages = async(e) => {
     e.preventDefault()
     try {
-        const response = await fetch('http://localhost:8080/api/download', {
+        const response = await fetch('https://guarded-bayou-88466.herokuapp.com/api/download', {
             method: 'GET'
         })
 
