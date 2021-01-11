@@ -5,7 +5,7 @@ const uploadImage = async (req, res) => {
         res.status(400).json({ message: 'No file selected, try again' })
         throw new Error('No file selected, try again')
     } else {
-        res.status(200).json({ message: 'Success! Go back to view images' })
+        res.status(200).redirect('http://localhost:8080')
     }
 }
 

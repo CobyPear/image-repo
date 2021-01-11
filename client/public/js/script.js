@@ -1,6 +1,5 @@
-const uploadedImage = document.getElementById('uploadedImg')
-const image = uploadedImage.files[0]
-const uploadFrom = document.getElementById('uploadForm')
+const fileName = document.getElementById('file-selected')
+const input = document.getElementById('file-upload')
 
 const viewImages = async (e) => {
     e.preventDefault()
@@ -20,14 +19,19 @@ const viewImages = async (e) => {
             const img = document.createElement('img')
             img.src = `https://storage.googleapis.com/${image.bucket.name}/${imageName}`
             img.alt = image.id
-            const downloadLink = document.createElement('a')
-            downloadLink.href = image.metadata.mediaLink
-            downloadLink.textContent = `Download ${imageName} here!`
+
+            const downloadButton = document.createElement('button')
+            downloadButton.classList = 'borderSpin'
+            downloadButton.value = image.metadata.mediaLink
+            downloadButton.textContent = `Download ${imageName}`
+            downloadButton.addEventListener('click', (e) => {
+                window.location.href = e.target.value
+            })
 
             const container = document.createElement('div')
             container.className = 'image'
 
-            container.append(img, downloadLink)
+            container.append(img, downloadButton)
 
             const imgContainer = document.getElementById('imgContainer')
             imgContainer.append(container)
@@ -40,5 +44,9 @@ const viewImages = async (e) => {
 }
 
 
-
+input.addEventListener('change', (e) => {
+    console.log('hello')
+    console.log(e.target.value)
+    console.log(e.target)
+})
 window.addEventListener('load', viewImages)

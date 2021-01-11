@@ -1,23 +1,93 @@
+:root {
+    --main-bg-color: #EFF6EE;
+    --secondary-bg-color: #9197AE;
+    --dark-bg-color: #273043;
+    --lighter-red: #F02D3A;
+    --darker-red: #DD0426;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-bg-color);
+}
+
 h1 {
-    text-align: center;
+    margin-top: 0px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--secondary-bg-color);
+    color: var(--main-bg-color);
+    text-shadow: 2px -2px var(--dark-bg-color);
+}
+p {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    height: 30px;
+    padding: 25px;
+    margin: 0 auto 30px auto;
+    border: 2px dashed var(--darker-red);
+    color: var(--main-bg-color);
+    background-color: var(--dark-bg-color);
+
 }
 form {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 500px;
+    margin: auto;
 }
+
+
 #imgContainer {
-    max-width: max-content;
+    min-width: 98vw;
     display: flex;
-    flex-direction: row wrap;
+    flex-flow: row wrap;
+    margin: 20px 12px 0 12px;
+
 }
 
 .image {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    margin: 20px 20px 0 0;
+    padding: 15px;
+
+    background-color: var(--secondary-bg-color);
 }
 img {
     height: 250px;
     width: 250px;
     margin-right :auto;
     padding: 25px;
+}
+
+button, .custom-upload-btn {
+    margin: auto;
+    padding: 12px;
+    background-color: var(--dark-bg-color);
+    color: var(--main-bg-color);
+    border-radius: 25px;
+}
+
+button:hover, .custom-upload-btn:hover {
+    cursor: pointer;
+    border: 1px dashed var(--lighter-red);
+}
+
+.custom-upload-btn {
+    border: 1px solid var(--lighter-red)
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    form {
+        flex-direction: column;
+        margin: auto;
+    }
 }
