@@ -21,7 +21,7 @@ const createAllowListValidator = function (allowList) {
         return false
     }
 }
-const allowList = ['https://guarded-bayou-88466.herokuapp.com/', null]
+const allowList = ['https://guarded-bayou-88466.herokuapp.com/', 'http://localhost:8080', null]
 // cors options
 const corsOptions = {
     allowOrigin: createAllowListValidator(allowList)
@@ -31,7 +31,6 @@ const handleCors = (options) => {
     return (req, res, next) => {
         if (options.allowOrigin) { 
             let origin = req.headers['origin']
-            console.log(origin)
             if (options.allowOrigin(origin)) {
                 res.set('Access-Control-Allow-Origin', origin)
             } else {
@@ -56,7 +55,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 // frontend page
 app.use(express.static('client/public'))
-
 
 // upload route
 const uploadFileRoute = require('./routes/uploadRoutes')

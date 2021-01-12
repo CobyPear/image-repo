@@ -6,7 +6,7 @@ const uploadImage = async(req, res) => {
         throw new Error('No file selected, try again')
     } else {
         if (process.env.NODE_ENV === 'development') {
-            res.status(200).json('success')
+            res.status(200).redirect('https://localhost:8080')
         } else {
             res.status(200).redirect('https://guarded-bayou-88466.herokuapp.com/')
         }

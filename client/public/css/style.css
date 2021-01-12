@@ -1,105 +1,124 @@
 :root {
-    --main-bg-color: #EFF6EE;
-    --secondary-bg-color: #9197AE;
-    --dark-bg-color: #273043;
-    --lighter-red: #F02D3A;
-    --darker-red: #DD0426;
+  --main-bg-color: #EFF6EE;
+  --secondary-bg-color: #9197AE;
+  --dark-bg-color: #273043;
+  --lighter-red: #F02D3A;
+  --darker-red: #DD0426;
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
-    background-color: var(--main-bg-color);
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-bg-color);
 }
 
 h1 {
-    margin-top: 0px;
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    background-color: var(--secondary-bg-color);
-    color: var(--main-bg-color);
-    text-shadow: 2px -2px var(--dark-bg-color);
+  margin-top: 0px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--secondary-bg-color);
+  color: var(--main-bg-color);
+  text-shadow: 2px -2px var(--dark-bg-color);
 }
+
 p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  margin: 0 auto 30px auto;
+  border: 2px dashed var(--darker-red);
+  color: var(--main-bg-color);
+  background-color: var(--dark-bg-color);
+}
+
+#notice {
+  font-size: 2em;
+  text-shadow: 1px -1px white;
+  align-self: center;
+  color: var(--darker-red);
+}
+
+form {
+    visibility: hidden;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 50vw;
+  padding: 20px;
+  margin: auto;
+  border: 2px dashed var(--dark-bg-color);
+  background-color: var(--secondary-bg-color);
+}
+
+input[id='file-upload'] {
+  color: white;
+  padding: 30px;
+}
+
+.submit {
+  padding: 20px;
+}
+
+#googleSignInContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 25px;
-    margin: 0 auto 30px auto;
-    border: 2px dashed var(--darker-red);
-    color: var(--main-bg-color);
-    background-color: var(--dark-bg-color);
+    margin-bottom: 12px;
 }
-#notice {
-    font-size: 2em;
-    text-shadow: 1px -1px white;
-    align-self: center;
-    color: var(--darker-red);
-}
-form {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 500px;
-    padding: 20px;
-    margin: auto;
-    border: 2px dashed var(--dark-bg-color);
-    background-color: var(--secondary-bg-color);
-}
-
-input[id='file-upload'] {
-    color: white;
-}
-
 #imgContainer {
-    min-width: 98vw;
-    display: flex;
-    flex-flow: row wrap;
-    margin: 20px 12px 0 12px;
-
+  min-width: 98vw;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px 12px 0 12px;
 }
 
 .image {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 20px 20px 0 0;
-    padding: 15px;
-    background-color: var(--secondary-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 20px 0 0;
+  padding: 15px;
+  background-color: var(--secondary-bg-color);
 }
 
 img {
-    height: 250px;
-    width: 250px;
-    margin-right :auto;
-    padding: 25px;
+  height: 250px;
+  width: 250px;
+  margin-right: auto;
+  padding: 25px;
 }
 
-button, .custom-upload-btn {
-    margin: auto;
-    padding: 12px;
-    background-color: var(--dark-bg-color);
-    color: var(--main-bg-color);
-    border-radius: 25px;
-    max-width: 250px;
+button,
+.submit {
+  margin: auto;
+  padding: 12px;
+  background-color: var(--dark-bg-color);
+  color: var(--main-bg-color);
+  border-radius: 25px;
+  max-width: 250px;
 }
 
-button:hover, .custom-upload-btn:hover {
-    cursor: pointer;
-    border: 2px dashed var(--lighter-red);
+button:hover,
+.submit:hover {
+  cursor: pointer;
+  border: 2px dashed var(--lighter-red);
 }
 
 .custom-upload-btn {
-    border: 1px solid var(--lighter-red)
+  border: 1px solid var(--lighter-red)
 }
 
 
 /* Extra small devices (phones, 600px and down) */
+
 @media only screen and (max-width: 600px) {
-    form {
-        flex-direction: column;
-        margin: auto;
-    }
+  form {
+    flex-direction: column;
+    margin: auto;
+  }
 }

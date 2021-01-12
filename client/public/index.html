@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="./css/style.css">
+    <meta name="google-signin-client_id" content="64598261891-vl8257jdcvbdbc6okitngpfjg7jnbvad.apps.googleusercontent.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Repo</title>
@@ -13,17 +14,24 @@
     <p>
         <strong id='notice'>**NOTICE**</strong>
         <br>
-        <br>
-        This is a PUBLIC image repository. Images uploaded may be downloaded by anyone who visits this page, so please be mindful of what you post. Illegal content will be removed and you will be banned.
-        <br>
-        <br>
-
-        Click the Choose File button to browse your machine for an image to upload, then click Submit!
+        <br> This is a PUBLIC image repository. Images uploaded may be downloaded by anyone who visits this page, so please be mindful of what you post. Illegal content will be removed and you will be banned.
         <br>
         <br>
-        
-        Click an image to view its original resolution. Click again to revert back to normal
+        Images are deleted from the repo 25 days after being uploaded
+        <br>
+        <br>
+        In order to view the images or upload an image to the repository, please sign in with Google using the button below.
+        <br>
+        <br> Click the Choose File/Browse button to browse your machine for an image to upload, then click Submit!
+        <br>
+        <br> Click an image to view its original resolution. Click again to revert back to normal
     </p>
+
+    <div id='googleSignInContainer'>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" onclick="signOut();">Sign out</a>
+    </div>
+
     <div class=container>
         <form action="/api/upload" method="POST" enctype="multipart/form-data" id='uploadForm'>
             <input type="file" name='file' id='file-upload'>
@@ -34,8 +42,9 @@
     <div class="container" id='imgContainer'>
     </div>
 
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script type='text/javascript' src="./js/script.js"></script>
+
 </body>
 
 </html>
