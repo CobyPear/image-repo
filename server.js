@@ -56,15 +56,12 @@ if (process.env.NODE_ENV === 'development') {
 // frontend page
 app.use(express.static('client/public'))
 
-// auth routes
-const authRoutes = require('./routes/authRoutes')
 // upload route
 const uploadFileRoute = require('./routes/uploadRoutes')
     // download rotes
 const downloadImagesRoute = require('./routes/downloadRoutes')
 
-// auth user
-app.use('/auth', authRoutes)
+
 // Upload an image
 app.use('/api', uploadFileRoute)
 app.use('/api', downloadImagesRoute)
